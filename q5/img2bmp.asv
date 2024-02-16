@@ -1,0 +1,16 @@
+% filename: 変換する画像に応じて変更
+filename = [
+    "c_rotate.img",
+    "c_swap.img",
+    "c_rotate.img",
+    "c_rotate.img",
+    "c_rotate.img",
+    "c_rotate.img"
+    ];
+outfileName = erase(filename, ".img") + ".bmp";
+% ファイル読み込み
+mat = readmatrix(filename, 'FileType','text');
+% 整形
+mat = reshape(mat, [1024, 1024]); 
+% プログラムはrow-majorを前提とした記述なので，転置する(matlabはcolum-majorのため)．
+imwrite(uint8(mat'), outfileName, "bmp");
